@@ -57,7 +57,7 @@ fun HalamanHome(
                         .align(Alignment.CenterHorizontally)
                 )
                 Text(
-                    text = "WHAAAAAT?",
+                    text = "So gooood",
                     color = Color.DarkGray,
                     fontSize = 60.sp,
                     modifier = Modifier

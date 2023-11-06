@@ -29,46 +29,43 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.esjumbo.R
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HalamanSatu(
+fun FirstPage(
     pilihanRasa: List<String>,
     onSelectionChanged: (String) -> Unit,
     onConfirmButtonClicked: (Int) -> Unit,
     onNextButtonClicked: () -> Unit,
     onCancelButtonClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    var rasaYgDipilih by rememberSaveable { mutableStateOf("") }
-    var textJmlBeli by remember { mutableStateOf("") }
+    var selectedFlavor by rememberSaveable {
+        mutableStateOf("")
+    }
 
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        Column(
-            modifier = Modifier.padding(
-                dimensionResource(R.dimen.padding_medium)
-            )
-        ) {
+    var textTotalOrder by rememberSaveable {
+        mutableStateOf("")
+    }
+
+    Column(modifier = modifier, verticalArrangement = Arrangement.SpaceBetween) {
+        Column(modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))) {
             pilihanRasa.forEach { item ->
                 Row(modifier = Modifier.selectable(
-                    selected = rasaYgDipilih == item,
+                    selected = selectedFlavor == item,
                     onClick = {
-                        rasaYgDipilih = item
+                        selectedFlavor = item
                         onSelectionChanged(item)
                     }
                 ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RadioButton(selected = rasaYgDipilih == item, onClick = {
-                        onSelectionChanged(item)
-                    }
+                    RadioButton(selected = selectedFlavor == item,
+                        onClick = {
+                            selectedFlavor = item
+                            onSelectionChanged(item)
+                        }
                     )
                     Text(item)
-
-
                 }
             }
             Divider(
@@ -80,30 +77,28 @@ fun HalamanSatu(
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.padding_medium))
                     .weight(1f, false),
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
             ) {
-                OutlinedTextField(value = textJmlBeli,
+                OutlinedTextField(
+                    value = textTotalOrder,
+                    onValueChange = { textTotalOrder = it },
+                    modifier = Modifier.width(150.dp),
+                    label = { Text("Jumlah Order") },
                     singleLine = true,
                     shape = MaterialTheme.shapes.large,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    modifier = Modifier.width(150.dp),
-                    label = { Text(text = "Jumlah Order") },
-                    onValueChange = {
-                        textJmlBeli = it
-                    }
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
                 Button(
-                    modifier = Modifier.weight(1f),
-                    enabled = textJmlBeli.isNotEmpty(),
-                    onClick = { onConfirmButtonClicked(textJmlBeli.toInt()) }
+                    onClick = { onConfirmButtonClicked(textTotalOrder.toInt()) },
+                    enabled = textTotalOrder.isNotEmpty(),
                 ) {
                     Text(stringResource(R.string.confirm))
                 }
+
             }
             Divider(
                 thickness = dimensionResource(R.dimen.thickness_divider),
                 modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium))
-
             )
             Row(
                 modifier = Modifier
@@ -113,22 +108,20 @@ fun HalamanSatu(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
                 verticalAlignment = Alignment.Bottom
             ) {
-
                 OutlinedButton(
-                    modifier = Modifier.weight(1f),
-                    onClick = onCancelButtonClicked
+                    onClick = onCancelButtonClicked,
+                    modifier = Modifier.weight(1f)
                 ) {
+                    Text(stringResource(id = R.string.cansel))
                 }
                 Button(
+                    onClick = onNextButtonClicked,
                     modifier = Modifier.weight(1f),
-                    enabled = textJmlBeli.isNotEmpty(),
-                    onClick = onNextButtonClicked
+                    enabled = textTotalOrder.isNotEmpty(),
                 ) {
                     Text(stringResource(R.string.next))
-
                 }
             }
-
         }
     }
 }

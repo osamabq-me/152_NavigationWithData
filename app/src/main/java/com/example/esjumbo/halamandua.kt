@@ -23,56 +23,52 @@ import com.example.esjumbo.R
 import com.example.esjumbo.data.OrderUIState
 import com.example.esjumbo.ui.theme.komponen.FormatlabelHarga
 
-@SuppressLint("ResourceType")
 @Composable
-fun HalamanDua(
+fun SecondPage(
     orderUIState: OrderUIState,
     onCancelButtonClicked: () -> Unit,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     val items = listOf(
-        Pair(stringArrayResource(R.string.quantity), orderUIState.jumlah),
-        Pair(stringResource(R.string.flavor), orderUIState.rasa)
-
+        Pair(stringResource(R.string.quantity), orderUIState.jumlah),
+        Pair(stringResource(R.string.flavor), orderUIState.rasa),
     )
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
-            modifier = Modifier
-                .padding(dimensionResource(R.dimen.padding_medium)),
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+            modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(
+                dimensionResource(R.dimen.padding_small)
+            )
         ) {
-            items.forEach{items ->
+            items.forEach { item ->
                 Column {
-                    Text(items.first.toString().uppercase())
-                    Text(text = items.second.toString(),
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text(item.first.uppercase())
+                    Text(text = item.second.toString(), fontWeight = FontWeight.Bold)
                 }
                 Divider(thickness = dimensionResource(R.dimen.thickness_divider))
             }
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-            FormatlabelHarga(subtotal = orderUIState.harga,
-                modifier= Modifier.align(Alignment.End)
+            FormatlabelHarga(
+                subtotal = orderUIState.harga,
+                modifier = Modifier.align(Alignment.End)
             )
         }
-        Row (
+        Row(
             modifier = Modifier
                 .weight(1f, false)
                 .padding(dimensionResource(R.dimen.padding_medium))
-        ){
-            Column(
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
-            ) {
-                Button(modifier = Modifier.fillMaxWidth(),
-                    onClick = {}
-                ) {
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)))
+            {
+                Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
                     Text(stringResource(R.string.send))
                 }
-                OutlinedButton(modifier = Modifier.fillMaxWidth(),
-                    onClick = {}
+                OutlinedButton(
+                    onClick = onCancelButtonClicked,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(stringResource(R.string.cansel))
                 }

@@ -17,7 +17,7 @@ class OrderViewModel : ViewModel() {
     val stateUi: StateFlow<OrderUIState> = _stateUI.asStateFlow()
 
 
-    fun setJumlah (jmlEsjumbo:Int){
+    fun setJumlah (jmlEsjumbo: Int){
         _stateUI.update { stateSaatIni -> stateSaatIni.copy(
             jumlah = jmlEsjumbo,
             harga = hitungHarga(jumlah = jmlEsjumbo)
