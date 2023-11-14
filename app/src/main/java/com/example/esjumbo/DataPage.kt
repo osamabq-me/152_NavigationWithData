@@ -84,16 +84,12 @@ fun Datapage(
 
             Button(
                 onClick = { onbackButtonClicked },
-                modifier = Modifier
-                    .weight(1f)
             ) {
                 Text(text = stringResource(id = R.string.btn_cancel))
 
             }
             Button(
-                onClick = { onSubmitButtonClicked(listData) },
-                modifier = Modifier
-                    .weight(1f)
+                onClick = {onSubmitButtonClicked(listData) },
             ) {
                 Text(text = stringResource(id = R.string.btn_next))
             }

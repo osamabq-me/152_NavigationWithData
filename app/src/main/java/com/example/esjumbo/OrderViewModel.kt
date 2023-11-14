@@ -17,6 +17,16 @@ class OrderViewModel : ViewModel() {
     val stateUi: StateFlow<OrderUIState> = _stateUI.asStateFlow()
 
 
+    fun setContact(list: MutableList<String>){
+        _stateUI.update {
+                statenow-> statenow.copy(
+            name = list[0],
+            adress = list[1],
+            tlp = list[2]
+        )
+        }
+    }
+
     fun setJumlah (jmlEsjumbo: Int){
         _stateUI.update { stateSaatIni -> stateSaatIni.copy(
             jumlah = jmlEsjumbo,
@@ -37,13 +47,5 @@ class OrderViewModel : ViewModel() {
         return NumberFormat.getNumberInstance().format(kalkulasiHarga)
     }
 
-    fun setContact(list: MutableList<String>){
-        _stateUI.update {
-                statenow-> statenow.copy(
-            name = list[0],
-            adress = list[1],
-            tlp = list[2]
-        )
-        }
-    }
+
 }

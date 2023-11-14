@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.dumdumteaapp.SecondPage
+import com.example.esjumbo.Datapage
 import com.example.esjumbo.HalamanHome
 import com.example.esjumbo.OrderViewModel
 import com.example.esjumbo.R
@@ -80,6 +81,7 @@ fun IceTeaApp(
         }
     ) { innerPadding ->
         val uiState by viewModel.stateUi.collectAsState()
+
         NavHost(
             navController = navController,
             startDestination = PageManager.Home.name,
@@ -87,7 +89,18 @@ fun IceTeaApp(
         ) {
             composable(route = PageManager.Home.name) {
                 HalamanHome(
-                    onNextButtonClicked = { navController.navigate(PageManager.Rasa.name) }
+                    onNextButtonClicked = { navController.navigate(PageManager.Data.name) }
+                )
+            }
+            composable(route = PageManager.Data.name) {
+                Datapage(onSubmitButtonClicked = {
+                    viewModel.setContact(it)
+                    navController.navigate(PageManager.Rasa.name)
+                },
+                    onbackButtonClicked = {cancelOrderAndNavigateToHome(
+                        viewModel,
+                        navController
+                    )}
                 )
             }
             composable(route = PageManager.Rasa.name) {
