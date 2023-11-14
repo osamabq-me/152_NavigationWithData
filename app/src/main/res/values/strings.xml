@@ -15,4 +15,11 @@
     <string name="flavor">rasa</string>
     <string name="subtotal_price">Subtotal : Rp %s</string>
     <string name="total_price"> Total %s</string>
+
+    <string name="name">Name</string>
+    <string name="phonenumber">Phone number</string>
+    <string name="adedres">Address</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_cancel">Cancel</string>
+
 </resources>
