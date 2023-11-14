@@ -30,7 +30,8 @@ fun Datapage(
 
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
 
-    onbackButtonClicked: () -> Unit,
+    onBackButtonClicked: () -> Unit,
+
 
     ) {
     var nametxt by remember {
@@ -83,7 +84,7 @@ fun Datapage(
         ) {
 
             Button(
-                onClick = { onbackButtonClicked },
+                onClick = onBackButtonClicked,
             ) {
                 Text(text = stringResource(id = R.string.btn_cancel))
 

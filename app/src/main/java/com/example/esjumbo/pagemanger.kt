@@ -97,10 +97,12 @@ fun IceTeaApp(
                     viewModel.setContact(it)
                     navController.navigate(PageManager.Rasa.name)
                 },
-                    onbackButtonClicked = {cancelOrderAndNavigateToHome(
-                        viewModel,
-                        navController
-                    )}
+                    onBackButtonClicked = {
+                        cancelOrderAndNavigateToHome(
+                            viewModel,
+                            navController
+                        )
+                    }
                 )
             }
             composable(route = PageManager.Rasa.name) {
@@ -111,7 +113,7 @@ fun IceTeaApp(
                     onConfirmButtonClicked = { viewModel.setJumlah(it) },
                     onNextButtonClicked = { navController.navigate(PageManager.Summary.name) },
                     onCancelButtonClicked = {
-                        cancelOrderAndNavigateToHome(
+                        cancelOrderAndNavigateToData(
                             viewModel,
                             navController
                         )
@@ -135,6 +137,15 @@ private fun cancelOrderAndNavigateToHome(
     viewModel.resetOrder()
     navController.popBackStack(PageManager.Home.name, inclusive = false)
 }
+
+private fun cancelOrderAndNavigateToData(
+    viewModel: OrderViewModel,
+    navController: NavHostController,
+) {
+    viewModel.resetOrder()
+    navController.popBackStack(PageManager.Data.name, inclusive = false)
+}
+
 
 private fun cancelOrderAndNavigateToRasa(
     navController: NavHostController,
