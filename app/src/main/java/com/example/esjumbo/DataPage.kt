@@ -85,16 +85,18 @@ fun Datapage(
 
             Button(
                 onClick = onBackButtonClicked,
-
+                modifier = Modifier
+                    .padding(16.dp)
             ) {
                 Text(text = stringResource(id = R.string.btn_cancel))
 
             }
-
+            Spacer(modifier = Modifier.padding(70.dp))
 
             Button(
                 onClick = {onSubmitButtonClicked(listData) },
-
+                modifier = Modifier
+                    .padding(16.dp)
             ) {
                 Text(text = stringResource(id = R.string.btn_next))
             }
