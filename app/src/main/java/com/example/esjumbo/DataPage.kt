@@ -85,12 +85,16 @@ fun Datapage(
 
             Button(
                 onClick = onBackButtonClicked,
+
             ) {
                 Text(text = stringResource(id = R.string.btn_cancel))
 
             }
+
+
             Button(
                 onClick = {onSubmitButtonClicked(listData) },
+
             ) {
                 Text(text = stringResource(id = R.string.btn_next))
             }

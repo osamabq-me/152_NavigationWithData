@@ -46,20 +46,17 @@ fun SecondPage(
             ) {
                 Text(text = stringResource(id = R.string.name))
                 Text(text = orderUIState.name)
-                Divider()
-                Spacer(modifier = Modifier.padding(16.dp))
+                Divider(thickness = dimensionResource(R.dimen.thickness_divider))
 
 
                 Text(text = stringResource(id = R.string.adedres))
                 Text(text = orderUIState.adress)
-                Divider()
-                Spacer(modifier = Modifier.padding(16.dp))
+                Divider(thickness = dimensionResource(R.dimen.thickness_divider))
 
                 Text(text = stringResource(id = R.string.phonenumber))
                 Text(text = orderUIState.tlp)
-                Divider()
+                Divider(thickness = dimensionResource(R.dimen.thickness_divider))
 
-                Spacer(modifier = Modifier.padding(16.dp))
 
                 items.forEach { item ->
                     Column {
