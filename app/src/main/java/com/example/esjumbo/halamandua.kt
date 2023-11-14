@@ -19,6 +19,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.example.esjumbo.R
 import com.example.esjumbo.data.OrderUIState
 import com.example.esjumbo.ui.theme.komponen.FormatlabelHarga
@@ -37,40 +38,55 @@ fun SecondPage(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+
         Column(
             modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
             verticalArrangement = Arrangement.spacedBy(
                 dimensionResource(R.dimen.padding_small)
             )
         ) {
-            items.forEach { item ->
-                Column {
-                    Text(item.first.uppercase())
-                    Text(text = item.second.toString(), fontWeight = FontWeight.Bold)
+            Text(text = stringResource(id = R.string.name))
+            Text(text = orderUIState.name)
+            Divider()
+            Spacer(modifier = Modifier.padding(16.dp))
+
+
+
+            Column(
+                modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
+                verticalArrangement = Arrangement.spacedBy(
+                    dimensionResource(R.dimen.padding_small)
+                )
+            ) {
+                items.forEach { item ->
+                    Column {
+                        Text(item.first.uppercase())
+                        Text(text = item.second.toString(), fontWeight = FontWeight.Bold)
+                    }
+                    Divider(thickness = dimensionResource(R.dimen.thickness_divider))
                 }
-                Divider(thickness = dimensionResource(R.dimen.thickness_divider))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+                FormatlabelHarga(
+                    subtotal = orderUIState.harga,
+                    modifier = Modifier.align(Alignment.End)
+                )
             }
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-            FormatlabelHarga(
-                subtotal = orderUIState.harga,
-                modifier = Modifier.align(Alignment.End)
-            )
-        }
-        Row(
-            modifier = Modifier
-                .weight(1f, false)
-                .padding(dimensionResource(R.dimen.padding_medium))
-        ) {
-            Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)))
-            {
-                Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.send))
-                }
-                OutlinedButton(
-                    onClick = onCancelButtonClicked,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(stringResource(R.string.cansel))
+            Row(
+                modifier = Modifier
+                    .weight(1f, false)
+                    .padding(dimensionResource(R.dimen.padding_medium))
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)))
+                {
+                    Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
+                        Text(stringResource(R.string.send))
+                    }
+                    OutlinedButton(
+                        onClick = onCancelButtonClicked,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(stringResource(R.string.cansel))
+                    }
                 }
             }
         }
