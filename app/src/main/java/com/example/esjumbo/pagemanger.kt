@@ -33,6 +33,7 @@ import com.example.navigation.FirstPage
 
 enum class PageManager {
     Home,
+    Data,
     Rasa,
     Summary
 }
