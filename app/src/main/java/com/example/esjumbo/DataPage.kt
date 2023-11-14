@@ -2,8 +2,13 @@ package com.example.esjumbo
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -16,16 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Datapage (
+fun Datapage(
 
-    onSubmitButtonClicked: (MutableList<String>) -> Unit
+    onSubmitButtonClicked: (MutableList<String>) -> Unit,
 
+    onbackButtonClicked: () -> Unit,
 
-) {
+    ) {
     var nametxt by remember {
         mutableStateOf("")
     }
@@ -46,8 +53,8 @@ fun Datapage (
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        
-        Text(text = "Coustomer Data" , fontWeight = FontWeight.Bold)
+
+        Text(text = "Coustomer Data", fontWeight = FontWeight.Bold)
 
         OutlinedTextField(value = nametxt,
             modifier = Modifier.fillMaxWidth(),
@@ -65,10 +72,32 @@ fun Datapage (
             modifier = Modifier.fillMaxWidth(),
             onValueChange = { tlpnTxt = it },
             label = { Text(text = stringResource(id = R.string.phonenumber)) })
-        
-        
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+
+            Button(
+                onClick = { onbackButtonClicked },
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                Text(text = stringResource(id = R.string.btn_cancel))
+
+            }
+            Button(
+                onClick = { onSubmitButtonClicked(listData) },
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                Text(text = stringResource(id = R.string.btn_next))
+            }
+        }
     }
-
-
 
 }
