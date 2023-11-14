@@ -38,26 +38,29 @@ fun SecondPage(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-
-        Column(
-            modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
-            verticalArrangement = Arrangement.spacedBy(
-                dimensionResource(R.dimen.padding_small)
-            )
-        ) {
-            Text(text = stringResource(id = R.string.name))
-            Text(text = orderUIState.name)
-            Divider()
-            Spacer(modifier = Modifier.padding(16.dp))
-
-
-
             Column(
                 modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
                 verticalArrangement = Arrangement.spacedBy(
                     dimensionResource(R.dimen.padding_small)
                 )
             ) {
+                Text(text = stringResource(id = R.string.name))
+                Text(text = orderUIState.name)
+                Divider()
+                Spacer(modifier = Modifier.padding(16.dp))
+
+
+                Text(text = stringResource(id = R.string.adedres))
+                Text(text = orderUIState.adress)
+                Divider()
+                Spacer(modifier = Modifier.padding(16.dp))
+
+                Text(text = stringResource(id = R.string.phonenumber))
+                Text(text = orderUIState.tlp)
+                Divider()
+
+                Spacer(modifier = Modifier.padding(16.dp))
+
                 items.forEach { item ->
                     Column {
                         Text(item.first.uppercase())
@@ -91,4 +94,3 @@ fun SecondPage(
             }
         }
     }
-}
